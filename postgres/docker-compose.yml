@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: andrew       # Замените на нужное имя пользователя
+      POSTGRES_PASSWORD: andrew  # Замените на нужный пароль
+      POSTGRES_DB: timers           # Замените на нужное имя базы данных
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  postgres_network:
+    driver: bridge
